@@ -27,7 +27,6 @@ export default function Profile({ postsCount, categoriesCount, tagsCount }: Prof
 
         const centerX = canvas.width / 2
         const centerY = canvas.height / 2
-        const radius = 64
 
         // 调整雨伞位置以配合新角度
         umbrellaX.current = centerX - 20  // 更靠右
