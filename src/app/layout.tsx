@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import 'highlight.js/styles/tokyo-night-dark.css'
 
 export const metadata: Metadata = {
   title: "My Blog",

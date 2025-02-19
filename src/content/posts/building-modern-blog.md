@@ -5,6 +5,17 @@ category: '技术'
 excerpt: '本文将介绍如何使用 Next.js 13+ 和 TailwindCSS 构建一个现代化的个人博客系统...'
 ---
 
+|  表头   | 表头  |
+|  ----  | ----  |
+| 单元格  | 单元格 |
+| 单元格  | 单元格 |
+
+```javascript
+$(document).ready(function () {
+    alert('RUNOOB');
+});
+```
+
 # 使用 Next.js 和 TailwindCSS 构建现代博客
 
 Next.js 是一个强大的 React 框架，它提供了许多开箱即用的功能，比如：

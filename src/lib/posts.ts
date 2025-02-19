@@ -3,6 +3,10 @@ import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
+import gfm from 'remark-gfm'
+import rehypeHighlight from 'rehype-highlight'
+import remarkRehype from 'remark-rehype'
+import rehypeStringify from 'rehype-stringify'
 
 const postsDirectory = path.join(process.cwd(), 'src/content/posts')
 
@@ -30,13 +34,16 @@ export async function getPostData(slug: string): Promise<PostData> {
     const fullPath = path.join(postsDirectory, `${slug}.md`)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
 
-    // 使用 gray-matter 解析 markdown 文件的元数据
     const matterResult = matter(fileContents)
 
-    // 使用 remark 将 markdown 转换为 HTML
+    // 使用 remark 处理 Markdown
     const processedContent = await remark()
-        .use(html)
+        .use(gfm)
+        .use(remarkRehype)
+        .use(rehypeHighlight)
+        .use(rehypeStringify)
         .process(matterResult.content)
+
     const content = processedContent.toString()
 
     return {
