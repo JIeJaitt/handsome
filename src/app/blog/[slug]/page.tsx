@@ -1,12 +1,19 @@
 import { getAllPostIds, getPostData } from '@/lib/posts'
 import { Metadata } from 'next'
 
+// 定义正确的参数类型
+type BlogPostParams = {
+    params: Promise<{
+        slug: string
+    }>
+    searchParams?: { [key: string]: string | string[] | undefined }
+}
+
 export async function generateMetadata({
-    params
-}: {
-    params: { slug: string }
-}): Promise<Metadata> {
-    const post = await getPostData(params.slug)
+    params,
+}: BlogPostParams): Promise<Metadata> {
+    const resolvedParams = await params
+    const post = await getPostData(resolvedParams.slug)
     return {
         title: post.title,
         description: post.excerpt,
@@ -18,13 +25,13 @@ export async function generateStaticParams() {
     return paths
 }
 
+// 使用 BlogPostParams 类型
 export default async function BlogPost({
-    params
-}: {
-    params: { slug: string }
-}) {
-    const { slug } = params
-    const post = await getPostData(slug)
+    params,
+    searchParams,
+}: BlogPostParams) {
+    const resolvedParams = await params
+    const post = await getPostData(resolvedParams.slug)
 
     return (
         <article className="max-w-4xl mx-auto px-4 py-8">
