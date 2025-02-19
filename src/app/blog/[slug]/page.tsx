@@ -1,13 +1,11 @@
 import { getAllPostIds, getPostData } from '@/lib/posts'
 import { Metadata } from 'next'
 
-interface Props {
-    params: {
-        slug: string
-    }
-}
-
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+    params
+}: {
+    params: { slug: string }
+}): Promise<Metadata> {
     const post = await getPostData(params.slug)
     return {
         title: post.title,
@@ -20,7 +18,11 @@ export async function generateStaticParams() {
     return paths
 }
 
-export default async function BlogPost({ params }: Props) {
+export default async function BlogPost({
+    params
+}: {
+    params: { slug: string }
+}) {
     const { slug } = params
     const post = await getPostData(slug)
 
