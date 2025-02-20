@@ -66,7 +66,7 @@ src/
 
 ## 📄 许可证
 
-MIT License © 2024 [your-name](https://github.com/your-username)
+MIT License © 2024 [JIeJaitt](https://github.com/JIeJaitt)
 
 ## 🤝 贡献
 
@@ -77,7 +77,7 @@ MIT License © 2024 [your-name](https://github.com/your-username)
 <p align="center">如果这个项目对你有帮助，欢迎 star ⭐️</p>
 
 <p align="center">
-  <a href="https://github.com/your-username/your-repo-name/stargazers">
-    <img src="https://starchart.cc/your-username/your-repo-name.svg" alt="Stargazers over time" />
+  <a href="https://github.com/jiejaitt/handsome/stargazers">
+    <img src="https://starchart.cc/jiejaitt/handsome.svg" alt="Stargazers over time" />
   </a>
 </p>

@@ -1,11 +1,9 @@
-import type { Metadata } from "next";
 import "./globals.css";
 import 'highlight.js/styles/tokyo-night-dark.css'
+import ThemeProvider from '@/components/ThemeProvider'
+import { metadata } from './metadata'
 
-export const metadata: Metadata = {
-  title: "My Blog",
-  description: "A modern blog built with Next.js and TailwindCSS",
-};
+export { metadata }
 
 export default function RootLayout({
   children,
@@ -15,7 +13,7 @@ export default function RootLayout({
   return (
     <html lang="zh">
       <body className="font-sans">
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

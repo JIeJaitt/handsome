@@ -21,14 +21,10 @@ export default function BlogCard({
     return (
         <Link href={`/blog/${slug}`} className="block">
             <article className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                <div className="relative w-full" style={{ height: '240px' }}>
-                    <Image
-                        src={imageUrl}
-                        alt={title}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    />
+                <div className="relative h-48 bg-gray-200 dark:bg-gray-700">
+                    <div className="w-full h-full flex items-center justify-center text-4xl bg-gray-100 dark:bg-gray-800">
+                        📝
+                    </div>
                 </div>
                 <div className="p-6">
                     <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-4">

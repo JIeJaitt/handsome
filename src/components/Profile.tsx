@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useEffect, useRef } from 'react'
 
-interface ProfileProps {
+type ProfileProps = {
     postsCount: number
     categoriesCount: number
     tagsCount: number
@@ -157,13 +157,12 @@ export default function Profile({ postsCount, categoriesCount, tagsCount }: Prof
                         width={256}
                         height={256}
                     />
-                    <Image
-                        src="https://picsum.photos/200"
-                        alt="Profile"
-                        fill
-                        className="rounded-full object-cover"
-                        priority
-                    />
+                    <div className="w-32 h-32 rounded-full bg-gray-200 dark:bg-gray-700">
+                        {/* 替换为本地头像图片或使用占位符 */}
+                        <div className="w-full h-full flex items-center justify-center text-4xl">
+                            👤
+                        </div>
+                    </div>
                 </div>
                 <h2 className="text-xl font-bold mb-2">博主昵称</h2>
                 <p className="text-gray-600 dark:text-gray-300 text-sm text-center mb-4">
