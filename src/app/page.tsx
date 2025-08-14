@@ -1,5 +1,5 @@
 import Profile from '@/components/Profile'
-import BlogCard from '@/components/BlogCard'
+import PostSearch from '@/components/PostSearch'
 import Sidebar from '@/components/Sidebar'
 import Calendar from '@/components/Calendar'
 import { getAllPosts } from '@/lib/posts'
@@ -26,19 +26,7 @@ export default function Home() {
 
         {/* 中间博客列表 */}
         <main className="lg:col-span-6">
-          <div className="grid grid-cols-1 gap-16">
-            {posts.map((post) => (
-              <BlogCard
-                key={post.id}
-                title={post.title}
-                excerpt={post.excerpt}
-                date={post.date}
-                category={post.category}
-                imageUrl={`https://picsum.photos/seed/${post.id}/800/400`}
-                slug={post.id}
-              />
-            ))}
-          </div>
+          <PostSearch posts={posts} />
         </main>
 
         {/* 右侧边栏 */}
