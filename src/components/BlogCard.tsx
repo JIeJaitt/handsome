@@ -19,7 +19,7 @@ export default function BlogCard({
     slug,
 }: BlogCardProps) {
     return (
-        <Link href={`/blog/${slug}`} className="block">
+        <Link href={`/blog/${slug}`} className="block" key={slug || Math.random().toString(36).substring(2, 9)}>
             <article className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                 <div className="relative h-48 bg-gray-200 dark:bg-gray-700">
                     <div className="w-full h-full flex items-center justify-center text-4xl bg-gray-100 dark:bg-gray-800">

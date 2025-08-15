@@ -58,28 +58,39 @@ export function getAllPostIds() {
 }
 
 export async function getPostData(slug: string): Promise<PostData> {
-    const fullPath = path.join(postsDirectory, `${slug}.md`)
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const matterResult = matter(fileContents)
+    // 1. 校验slug有效性
+    if (!slug || typeof slug !== 'string' || slug.includes('..')) {
+        throw new Error(`Invalid slug: ${slug}`);
+    }
 
-    const processedContent = await remark()
-        .use(gfm)
-        .use(remarkRehype)
-        .use(rehypeHighlight)
-        .use(rehypeStringify)
-        .process(matterResult.content)
+    // 2. 构造合法路径
+    const fullPath = path.join(postsDirectory, `${slug}.md`);
 
-    const content = processedContent.toString()
+    // 3. 检查文件是否存在
+    if (!fs.existsSync(fullPath)) {
+        throw new Error(`Post not found: ${slug}.md`);
+    }
 
-    return {
-        slug,
-        content,
-        ...(matterResult.data as { 
-            title: string; 
-            date: string; 
-            category: string; 
-            summary: string; 
-            tags: string[];
-        }),
+    try {
+        // 4. 读取并解析Markdown
+        const fileContents = fs.readFileSync(fullPath, 'utf8');
+        const matterResult = matter(fileContents);
+
+        // 5. 处理Markdown内容（支持GFM + 语法高亮）
+        const processedContent = await remark()
+            .use(gfm)
+            .use(remarkRehype)
+            .use(rehypeHighlight)
+            .use(rehypeStringify)
+            .process(matterResult.content);
+
+        return {
+            slug,
+            content: processedContent.toString(),
+            ...(matterResult.data as Post),
+        };
+    } catch (error) {
+        console.error(`Error parsing post ${slug}:`, error);
+        throw error;
     }
 }

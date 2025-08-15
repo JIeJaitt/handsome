@@ -16,17 +16,20 @@ export default function PostSearch({ posts }: { posts: Post[] }) {
     <div>
       <Search value={query} onChange={setQuery} />
       <div className="grid grid-cols-1 gap-16 mt-8">
-        {filteredPosts.map(post => (
-          <BlogCard
-            key={post.id}
-            title={post.title}
-            excerpt={post.excerpt}
-            date={post.date}
-            category={post.category}
-            imageUrl={`https://picsum.photos/seed/${post.id}/800/400`}
-            slug={post.id}
-          />
-        ))}
+        {filteredPosts.map(post => {
+          const uniqueKey = post.id || `${post.title}-${post.date}`;
+          return (
+            <BlogCard
+              key={uniqueKey}
+              title={post.title}
+              excerpt={post.excerpt}
+              date={post.date}
+              category={post.category}
+              imageUrl={`https://picsum.photos/seed/${post.id}/800/400`}
+              slug={post.id}
+            />
+          );
+        })}
       </div>
     </div>
   )

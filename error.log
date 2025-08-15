@@ -1,0 +1,51 @@
+yingjie.huang@SZ030 MINGW64 ~/Desktop/handsome (main)
+$ npm run dev
+
+> my-blog@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.31
+  - Local:        http://localhost:3000
+  - Experiments (use with caution):
+    · turbo
+
+ ✓ Starting...
+ ⚠ Invalid next.config.mjs options detected:
+ ⚠     Expected object, received boolean at "experimental.turbo.resolveAlias"
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ ✓ Ready in 4.7s
+ ○ Compiling / ...
+ ✓ Compiled / in 4.1s (1123 modules)
+ GET / 200 in 4791ms
+ ✓ Compiled in 656ms (282 modules)
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 819ms (873 modules)
+ GET /favicon.ico 200 in 990ms
+ GET /favicon.ico 200 in 13ms
+ ✓ Compiled /blog/[slug] in 504ms (1145 modules)
+ ⨯ src\lib\posts.ts (71:15) @ getPostData
+ ⨯ Error: Post not found: undefined.md
+    at getPostData (./src/lib/posts.ts:59:15)
+    at BlogPost (./src/app/blog/[slug]/page.tsx:26:79)
+    at stringify (<anonymous>)
+    at AsyncLocalStorage.run (node:async_hooks:346:14)
+digest: "1506288442"
+  69 |     // 3. 检查文件是否存在
+  70 |     if (!fs.existsSync(fullPath)) {
+> 71 |         throw new Error(`Post not found: ${slug}.md`);
+     |               ^
+  72 |     }
+  73 |
+  74 |     try {
+ ⨯ src\lib\posts.ts (71:15) @ getPostData
+ ⨯ Error: Post not found: undefined.md
+    at getPostData (./src/lib/posts.ts:59:15)
+    at Module.generateMetadata (./src/app/blog/[slug]/page.tsx:15:79)
+digest: "876249763"
+  69 |     // 3. 检查文件是否存在
+  70 |     if (!fs.existsSync(fullPath)) {
+> 71 |         throw new Error(`Post not found: ${slug}.md`);
+     |               ^
+  72 |     }
+  73 |
+  74 |     try {
