@@ -22,155 +22,76 @@ export default {
           'sans-serif'
         ],
       },
-      typography: {
+      typography: (theme) => ({
         DEFAULT: {
           css: {
-            maxWidth: 'none',
-            color: 'var(--foreground)',
+            '--prose-body': theme('colors.gray[700]'),
+            '--prose-headings': theme('colors.gray[900]'),
+            '--prose-lead': theme('colors.gray[600]'),
+            '--prose-links': theme('colors.teal[500]'),
+            '--prose-bold': theme('colors.gray[900]'),
+            '--prose-counters': theme('colors.gray[500]'),
+            '--prose-bullets': theme('colors.gray[300]'),
+            '--prose-hr': theme('colors.gray[200]'),
+            '--prose-quotes': theme('colors.gray[900]'),
+            '--prose-quote-borders': theme('colors.gray[200]'),
+            '--prose-captions': theme('colors.gray[500]'),
+            '--prose-code': theme('colors.pink[600]'),
+            '--prose-pre-code': theme('colors.gray[200]'),
+            '--prose-pre-bg': theme('colors.gray[800]'),
+            '--prose-th-borders': theme('colors.gray[300]'),
+            '--prose-td-borders': theme('colors.gray[200]'),
+
+            '--prose-invert-body': theme('colors.gray[300]'),
+            '--prose-invert-headings': theme('colors.white'),
+            '--prose-invert-lead': theme('colors.gray[400]'),
+            '--prose-invert-links': theme('colors.teal[400]'),
+            '--prose-invert-bold': theme('colors.white'),
+            '--prose-invert-counters': theme('colors.gray[400]'),
+            '--prose-invert-bullets': theme('colors.gray[600]'),
+            '--prose-invert-hr': theme('colors.gray[700]'),
+            '--prose-invert-quotes': theme('colors.gray[100]'),
+            '--prose-invert-quote-borders': theme('colors.gray[700]'),
+            '--prose-invert-captions': theme('colors.gray[400]'),
+            '--prose-invert-code': theme('colors.pink[400]'),
+            '--prose-invert-pre-code': theme('colors.gray[300]'),
+            '--prose-invert-pre-bg': '#1a1b26',
+            '--prose-invert-th-borders': theme('colors.gray[600]'),
+            '--prose-invert-td-borders': theme('colors.gray[700]'),
+
+            // ... rest of the styles
+            h1: { fontWeight: '700' },
+            h2: { fontWeight: '600' },
+            h3: { fontWeight: '500' },
             a: {
-              color: '#3182ce',
-              '&:hover': {
-                color: '#2c5282',
-              },
               textDecoration: 'none',
+              fontWeight: '500',
+              transition: 'color 0.2s ease-in-out',
             },
-            'h1,h2,h3,h4': {
-              color: 'var(--foreground)',
-              fontWeight: '600',
-              letterSpacing: '-0.02em',
-            },
-            h1: {
-              fontSize: '2.25em',
-              marginTop: '2em',
-            },
-            h2: {
-              fontSize: '1.875em',
-              marginTop: '1.75em',
-            },
-            h3: {
-              fontSize: '1.5em',
-              marginTop: '1.5em',
+            'a:hover': {
+                color: 'var(--prose-links-hover)'
             },
             'code::before': {
-              content: '""',
+              content: ''
             },
             'code::after': {
-              content: '""',
+              content: ''
             },
             code: {
-              color: '#e83e8c',
-              backgroundColor: '#f8f9fa',
+              fontWeight: '500',
               padding: '0.2em 0.4em',
-              borderRadius: '3px',
-              fontSize: '0.875em',
-            },
-            'pre code': {
-              backgroundColor: 'transparent',
-              borderWidth: '0',
-              borderRadius: '0',
-              padding: '0',
-              fontWeight: '400',
-              color: 'inherit',
-              fontSize: 'inherit',
-              fontFamily: 'inherit',
-              lineHeight: 'inherit',
+              borderRadius: '0.25rem',
             },
             pre: {
-              backgroundColor: '#1a1b26',
-              color: '#a9b1d6',
-              borderRadius: '0.75rem',
-              padding: '1.25em',
-              overflow: 'auto',
-              border: '1px solid #2f3347',
+              border: `1px solid ${theme('colors.gray.700')}`,
+              borderRadius: '0.5rem',
             },
             blockquote: {
-              borderLeftColor: '#e2e8f0',
-              color: '#718096',
-              fontStyle: 'normal',
-              padding: '0.5em 1em',
-            },
-            'blockquote p:first-of-type::before': {
-              content: '""',
-            },
-            'blockquote p:last-of-type::after': {
-              content: '""',
-            },
-            table: {
-              width: '100%',
-              borderCollapse: 'collapse',
-              borderSpacing: 0,
-              marginTop: '2em',
-              marginBottom: '2em',
-            },
-            thead: {
-              borderBottomColor: '#cbd5e0',
-            },
-            'thead th': {
-              fontWeight: '600',
-              borderBottom: '2px solid #e2e8f0',
-              padding: '0.75em',
-              textAlign: 'left',
-            },
-            'tbody tr': {
-              borderBottomColor: '#e2e8f0',
-            },
-            'tbody td': {
-              padding: '0.75em',
-              borderBottom: '1px solid #e2e8f0',
-              verticalAlign: 'top',
-            },
-            'tbody tr:last-child td': {
-              borderBottom: 'none',
-            },
-            'tbody tr:nth-child(odd)': {
-              backgroundColor: 'rgba(0, 0, 0, 0.02)',
-            },
-            hr: {
-              borderColor: '#e2e8f0',
-              marginTop: '3em',
-              marginBottom: '3em',
-            },
-            ul: {
-              listStyleType: 'disc',
-              paddingLeft: '1.625em',
-            },
-            ol: {
-              paddingLeft: '1.625em',
-            },
-            'ul > li::marker': {
-              color: '#718096',
-            },
-            'ol > li::marker': {
-              color: '#718096',
-            },
-            '.hljs-comment,.hljs-quote': {
-              color: '#5c6370',
-              fontStyle: 'italic',
-            },
-            '.hljs-doctag,.hljs-keyword,.hljs-formula': {
-              color: '#c678dd',
-            },
-            '.hljs-section,.hljs-name,.hljs-selector-tag,.hljs-deletion,.hljs-subst': {
-              color: '#e06c75',
-            },
-            '.hljs-literal': {
-              color: '#56b6c2',
-            },
-            '.hljs-string,.hljs-regexp,.hljs-addition,.hljs-attribute,.hljs-meta-string': {
-              color: '#98c379',
-            },
-            '.hljs-built_in,.hljs-class .hljs-title': {
-              color: '#e6c07b',
-            },
-            '.hljs-attr,.hljs-variable,.hljs-template-variable,.hljs-type,.hljs-selector-class,.hljs-selector-attr,.hljs-selector-pseudo,.hljs-number': {
-              color: '#d19a66',
-            },
-            '.hljs-symbol,.hljs-bullet,.hljs-link,.hljs-meta,.hljs-selector-id,.hljs-title': {
-              color: '#61aeee',
-            },
-          },
+                fontStyle: 'normal'
+            }
+          }
         },
-      },
+      }),
     },
   },
   plugins: [

@@ -7,7 +7,7 @@ import { getAllPosts } from '@/lib/posts'
 export default function Home() {
   const posts = getAllPosts()
   const categories = [...new Set(posts.map(post => post.category))]
-  const tags = ['React', 'Next.js', 'TypeScript', 'TailwindCSS'] // 后续可以从文章中提取
+  const tags = [...new Set(posts.flatMap(post => post.tags || []))]
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">

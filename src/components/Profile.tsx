@@ -158,13 +158,16 @@ export default function Profile({ postsCount, categoriesCount, tagsCount }: Prof
                         height={256}
                     />
                     <div className="w-32 h-32 rounded-full bg-gray-200 dark:bg-gray-700">
-                        {/* 替换为本地头像图片或使用占位符 */}
-                        <div className="w-full h-full flex items-center justify-center text-4xl">
-                            👤
-                        </div>
+                        <Image
+                            src="/images/avatar.png"
+                            alt="Avatar"
+                            width={128}
+                            height={128}
+                            className="w-full h-full rounded-full object-cover"
+                        />
                     </div>
                 </div>
-                <h2 className="text-xl font-bold mb-2">博主昵称</h2>
+                <h2 className="text-xl font-bold mb-2">JIeJaitt</h2>
                 <p className="text-gray-600 dark:text-gray-300 text-sm text-center mb-4">
                     这里是个人简介，热爱技术，热爱生活...
                 </p>

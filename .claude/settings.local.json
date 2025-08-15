@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p public/images)",
+      "Bash(mv 'd:/Users/yingjie.huang/Desktop/handsome/84b48cb211754993bf9f48be1b55c3ac.png' public/images/avatar.png)",
+      "Bash(rm -rf \"src/app/blog/category/[category]\")"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

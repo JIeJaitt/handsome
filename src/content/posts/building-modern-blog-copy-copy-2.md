@@ -1,5 +1,5 @@
 ---
-title: '使用 Next.js 和 TailwindCSS 构建现代博客'
+title: '为什么选择 Next.js？'
 date: '2024-03-20'
 category: '技术'
 excerpt: '本文将介绍如何使用 Next.js 13+ 和 TailwindCSS 构建一个现代化的个人博客系统...'

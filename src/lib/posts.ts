@@ -2,7 +2,6 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { remark } from 'remark'
-import html from 'remark-html'
 import gfm from 'remark-gfm'
 import rehypeHighlight from 'rehype-highlight'
 import remarkRehype from 'remark-rehype'
@@ -10,21 +9,49 @@ import rehypeStringify from 'rehype-stringify'
 
 const postsDirectory = path.join(process.cwd(), 'src/content/posts')
 
-export interface PostData {
-    id: string
+export interface Post {
+    slug: string
     title: string
     date: string
     category: string
-    excerpt: string
+    summary: string
+    tags: string[]
+}
+
+export interface PostData extends Post {
     content: string
 }
 
-export function getAllPostIds() {
+export function getAllPosts(): Post[] {
     const fileNames = fs.readdirSync(postsDirectory)
-    return fileNames.map((fileName) => {
+    const allPostsData = fileNames
+        .filter((fileName) => fileName.endsWith('.md'))
+        .map((fileName) => {
+            const slug = fileName.replace(/\.md$/, '')
+            const fullPath = path.join(postsDirectory, fileName)
+            const fileContents = fs.readFileSync(fullPath, 'utf8')
+            const matterResult = matter(fileContents)
+
+            return {
+                slug,
+                ...(matterResult.data as { 
+                    title: string; 
+                    date: string; 
+                    category: string; 
+                    summary: string; 
+                    tags: string[];
+                }),
+            }
+        })
+
+    return allPostsData.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+}
+
+export function getAllPostIds() {
+    return getAllPosts().map((post) => {
         return {
             params: {
-                slug: fileName.replace(/\.md$/, ''),
+                slug: post.slug,
             },
         }
     })
@@ -33,10 +60,8 @@ export function getAllPostIds() {
 export async function getPostData(slug: string): Promise<PostData> {
     const fullPath = path.join(postsDirectory, `${slug}.md`)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
-
     const matterResult = matter(fileContents)
 
-    // 使用 remark 处理 Markdown
     const processedContent = await remark()
         .use(gfm)
         .use(remarkRehype)
@@ -47,25 +72,14 @@ export async function getPostData(slug: string): Promise<PostData> {
     const content = processedContent.toString()
 
     return {
-        id: slug,
+        slug,
         content,
-        ...(matterResult.data as { title: string; date: string; category: string; excerpt: string })
+        ...(matterResult.data as { 
+            title: string; 
+            date: string; 
+            category: string; 
+            summary: string; 
+            tags: string[];
+        }),
     }
 }
-
-export function getAllPosts() {
-    const fileNames = fs.readdirSync(postsDirectory)
-    const allPostsData = fileNames.map((fileName) => {
-        const id = fileName.replace(/\.md$/, '')
-        const fullPath = path.join(postsDirectory, fileName)
-        const fileContents = fs.readFileSync(fullPath, 'utf8')
-        const matterResult = matter(fileContents)
-
-        return {
-            id,
-            ...(matterResult.data as { title: string; date: string; category: string; excerpt: string })
-        }
-    })
-
-    return allPostsData.sort((a, b) => (a.date < b.date ? 1 : -1))
-} 
